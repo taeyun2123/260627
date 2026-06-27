@@ -51,19 +51,24 @@ export default function Login() {
 
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-md)' }}>
-              <h2 className="text-card-title">중학교 AI 윤리 가이드</h2>
-              <button onClick={() => setShowModal(false)} style={{ padding: '8px' }}>
-                <X size={24} color="var(--ink)" />
+          <div className="modal-content color-block-cream" onClick={(e) => e.stopPropagation()} style={{ padding: 'var(--spacing-xxl)', maxWidth: '900px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--spacing-xl)' }}>
+              <div>
+                <div className="text-eyebrow" style={{ marginBottom: 'var(--spacing-xs)' }}>AI Ethics Guide</div>
+                <h2 className="text-display-lg" style={{ fontSize: '48px', lineHeight: '1.1' }}>중학교 AI 윤리 가이드</h2>
+              </div>
+              <button className="btn-secondary" onClick={() => setShowModal(false)} style={{ padding: '8px 16px', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '16px' }}>
+                닫기 <X size={18} />
               </button>
             </div>
+            
             <img 
               src={ethicsGuideImage} 
               alt="중학교 AI 윤리 가이드" 
-              style={{ width: '100%', height: 'auto', borderRadius: 'var(--rounded-md)', marginBottom: 'var(--spacing-lg)' }} 
+              style={{ width: '100%', height: 'auto', borderRadius: 'var(--rounded-lg)', marginBottom: 'var(--spacing-xxl)' }} 
             />
-            <button className="btn-primary" style={{ width: '100%' }} onClick={() => {
+            
+            <button className="btn-primary" style={{ width: '100%', padding: '20px', fontSize: '22px' }} onClick={() => {
               setShowModal(false);
               handleLogin();
             }}>
