@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { LogIn, X } from 'lucide-react';
 import ethicsGuideImage from '../assets/중학교_AI윤리가이드.png';
 
 export default function Login() {
-  const { loginAsGuest } = useAuth();
+  const navigate = useNavigate();
+  const { currentUser, loginAsGuest, logout } = useAuth();
   const [showModal, setShowModal] = useState(true);
+
+  useEffect(() => {
+    if (currentUser) {
+      logout();
+    }
+  }, [currentUser, logout]);
 
   const handleLogin = () => {
     try {
       loginAsGuest();
+      navigate('/select-role');
     } catch (error) {
       console.error("Login failed", error);
     }

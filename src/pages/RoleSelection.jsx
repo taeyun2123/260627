@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export default function RoleSelection() {
-  const { selectRole } = useAuth();
+  const navigate = useNavigate();
+  const { currentUser, userRole, selectRole } = useAuth();
+
+  useEffect(() => {
+    if (!currentUser) {
+      navigate('/login', { replace: true });
+    } else if (userRole) {
+      selectRole(null);
+    }
+  }, [currentUser, userRole, navigate, selectRole]);
+
+  const handleSelectRole = (role) => {
+    selectRole(role);
+    navigate('/dashboard');
+  };
 
   return (
     <div>
@@ -21,10 +36,10 @@ export default function RoleSelection() {
           </p>
 
           <div style={{ display: 'flex', gap: 'var(--spacing-md)' }}>
-            <button className="btn-primary" onClick={() => selectRole('student')}>
+            <button className="btn-primary" onClick={() => handleSelectRole('student')}>
               학생 (Student)
             </button>
-            <button className="btn-secondary" onClick={() => selectRole('teacher')}>
+            <button className="btn-secondary" onClick={() => handleSelectRole('teacher')}>
               교사 (Teacher)
             </button>
           </div>

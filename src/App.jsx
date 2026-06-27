@@ -6,43 +6,14 @@ import RoleSelection from './pages/RoleSelection';
 import Dashboard from './pages/Dashboard';
 import Footer from './components/Footer';
 
-// 인증 가드 컴포넌트
-const PrivateRoute = ({ children }) => {
-  const { currentUser, userRole } = useAuth();
-
-  if (!currentUser) return <Navigate to="/login" />;
-  if (!userRole) return <Navigate to="/select-role" />;
-  
-  return children;
-};
-
 // 권한 확인 컴포넌트
 const AppRoutes = () => {
-  const { currentUser, userRole } = useAuth();
-
   return (
     <Routes>
-      <Route 
-        path="/login" 
-        element={
-          currentUser 
-            ? (userRole ? <Navigate to="/dashboard" /> : <Navigate to="/select-role" />)
-            : <Login />
-        } 
-      />
-      <Route 
-        path="/select-role" 
-        element={!currentUser ? <Navigate to="/login" /> : (userRole ? <Navigate to="/dashboard" /> : <RoleSelection />)} 
-      />
-      <Route 
-        path="/dashboard" 
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        } 
-      />
-      <Route path="*" element={<Navigate to="/login" />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/select-role" element={<RoleSelection />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 };
