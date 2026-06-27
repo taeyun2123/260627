@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import RoleSelection from './pages/RoleSelection';
 import Dashboard from './pages/Dashboard';
+import Footer from './components/Footer';
 
 // 인증 가드 컴포넌트
 const PrivateRoute = ({ children }) => {
@@ -50,7 +51,10 @@ export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <AppRoutes />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <AppRoutes />
+          <Footer />
+        </div>
       </BrowserRouter>
     </AuthProvider>
   );
