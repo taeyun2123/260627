@@ -3,11 +3,11 @@ import { useAuth } from '../context/AuthContext';
 import { LogIn } from 'lucide-react';
 
 export default function Login() {
-  const { loginWithGoogle } = useAuth();
+  const { loginAsGuest } = useAuth();
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     try {
-      await loginWithGoogle();
+      loginAsGuest();
     } catch (error) {
       console.error("Login failed", error);
     }
@@ -33,7 +33,7 @@ export default function Login() {
           
           <button className="btn-primary" onClick={handleLogin} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <LogIn size={20} />
-            Google 계정으로 시작하기
+            포털 시작하기 (로그인 생략)
           </button>
         </div>
       </div>
