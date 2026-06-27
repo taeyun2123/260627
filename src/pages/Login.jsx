@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { LogIn } from 'lucide-react';
+import { LogIn, X } from 'lucide-react';
+import ethicsGuideImage from '../assets/중학교_AI윤리가이드.png';
 
 export default function Login() {
   const { loginAsGuest } = useAuth();
+  const [showModal, setShowModal] = useState(true);
 
   const handleLogin = () => {
     try {
@@ -37,6 +39,27 @@ export default function Login() {
           </button>
         </div>
       </div>
+
+      {showModal && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-md)' }}>
+              <h2 className="text-card-title">중학교 AI 윤리 가이드</h2>
+              <button onClick={() => setShowModal(false)} style={{ padding: '8px' }}>
+                <X size={24} color="var(--ink)" />
+              </button>
+            </div>
+            <img 
+              src={ethicsGuideImage} 
+              alt="중학교 AI 윤리 가이드" 
+              style={{ width: '100%', height: 'auto', borderRadius: 'var(--rounded-md)', marginBottom: 'var(--spacing-lg)' }} 
+            />
+            <button className="btn-primary" style={{ width: '100%' }} onClick={() => setShowModal(false)}>
+              확인했습니다
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
