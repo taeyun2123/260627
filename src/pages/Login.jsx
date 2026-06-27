@@ -10,10 +10,10 @@ export default function Login() {
   const [showModal, setShowModal] = useState(true);
 
   useEffect(() => {
-    if (currentUser) {
-      logout();
-    }
-  }, [currentUser, logout]);
+    // 로그인 페이지에 진입할 때는 무조건 로그아웃 상태로 초기화 (뒤로가기 대응)
+    logout();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleLogin = () => {
     try {

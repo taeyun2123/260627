@@ -7,12 +7,16 @@ export default function RoleSelection() {
   const { currentUser, userRole, selectRole } = useAuth();
 
   useEffect(() => {
+    // 화면 진입 시 무조건 역할 초기화 (뒤로가기 대응)
+    selectRole(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (!currentUser) {
       navigate('/login', { replace: true });
-    } else if (userRole) {
-      selectRole(null);
     }
-  }, [currentUser, userRole, navigate, selectRole]);
+  }, [currentUser, navigate]);
 
   const handleSelectRole = (role) => {
     selectRole(role);
