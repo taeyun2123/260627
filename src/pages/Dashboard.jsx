@@ -1,5 +1,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
+import TeacherDashboard from './TeacherDashboard';
+import StudentDashboard from './StudentDashboard';
 
 export default function Dashboard() {
   const { currentUser, userRole, logout } = useAuth();
@@ -19,26 +21,7 @@ export default function Dashboard() {
       </nav>
 
       <div className="container" style={{ marginTop: 'var(--spacing-xxl)' }}>
-        {userRole === 'teacher' ? (
-          <div className="color-block-section color-block-navy">
-            <div className="text-eyebrow" style={{ marginBottom: 'var(--spacing-md)' }}>Teacher Workspace</div>
-            <h2 className="text-display-lg" style={{ marginBottom: 'var(--spacing-md)' }}>실시간 모니터링</h2>
-            <p className="text-subhead" style={{ maxWidth: '600px' }}>
-              수업 중 학생들의 참여 현황을 '신호등 대시보드'로 모니터링하세요. (준비 중)
-            </p>
-          </div>
-        ) : (
-          <div className="color-block-section color-block-cream">
-            <div className="text-eyebrow" style={{ marginBottom: 'var(--spacing-md)' }}>Student Portal</div>
-            <h2 className="text-display-lg" style={{ marginBottom: 'var(--spacing-md)' }}>오늘의 학습 앱</h2>
-            <p className="text-subhead" style={{ maxWidth: '600px' }}>
-              선생님이 지정한 학습 앱을 시작하세요. 최소 학습 시간 경과 후 제출이 가능합니다. (준비 중)
-            </p>
-            <div style={{ marginTop: 'var(--spacing-xl)' }}>
-              <button className="btn-primary">학습 시작</button>
-            </div>
-          </div>
-        )}
+        {userRole === 'teacher' ? <TeacherDashboard /> : <StudentDashboard />}
       </div>
     </div>
   );

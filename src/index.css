@@ -240,3 +240,35 @@ a {
     padding: 0 var(--spacing-lg);
   }
 }
+
+.text-input {
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 18px;
+  border-radius: var(--rounded-md);
+  padding: 12px 14px;
+  border: 1px solid var(--hairline);
+  width: 100%;
+  outline: none;
+  transition: border-color 0.1s ease;
+}
+
+.text-input:focus {
+  border-color: var(--ink);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+  text-align: left;
+}
+
+.form-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: var(--spacing-xs);
+  color: var(--ink);
+}
+
