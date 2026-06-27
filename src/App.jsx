@@ -23,7 +23,11 @@ const AppRoutes = () => {
     <Routes>
       <Route 
         path="/login" 
-        element={currentUser && userRole ? <Navigate to="/dashboard" /> : <Login />} 
+        element={
+          currentUser 
+            ? (userRole ? <Navigate to="/dashboard" /> : <Navigate to="/select-role" />)
+            : <Login />
+        } 
       />
       <Route 
         path="/select-role" 
