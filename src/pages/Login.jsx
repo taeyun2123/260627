@@ -63,8 +63,11 @@ export default function Login() {
               alt="중학교 AI 윤리 가이드" 
               style={{ width: '100%', height: 'auto', borderRadius: 'var(--rounded-md)', marginBottom: 'var(--spacing-lg)' }} 
             />
-            <button className="btn-primary" style={{ width: '100%' }} onClick={() => setShowModal(false)}>
-              확인했습니다
+            <button className="btn-primary" style={{ width: '100%' }} onClick={() => {
+              setShowModal(false);
+              handleLogin();
+            }}>
+              확인했습니다 (포털 시작하기)
             </button>
           </div>
         </div>
